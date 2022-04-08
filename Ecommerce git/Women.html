@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-size: 1vw;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            background-color: teal;
+            padding: 1vw;
+            font-weight: 900;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            width: 23.5vw;
+            height: 30vh;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 1vw;
+            text-align: center;
+            margin: 1vw;
+        }
+        #container > div{
+            border: 1px solid #cecece;
+
+        }
+        button{
+            background-color: rgb(255,159,0);
+            padding: .7vw;
+            width: 21vw;margin: auto;
+            text-align: center;
+            border-color:rgb(255,159,0) ;
+        }
+        @media (max-width:450px){
+            #container{
+                grid-template-columns: repeat(1,1fr);
+            }
+            img{
+                width: 95vw;
+            }
+            #container > div{
+                min-height: 40vh;
+            }
+            button{
+                font-size: 2vw;
+                width: 70vw;
+            }
+            #container > div >div{
+                font-size: 3vw;
+            }
+            p{
+                font-size: 3vw;
+                margin-bottom: 2vh;
+            }
+            .header a{
+                font-size: 3vw;
+            }
+        }
+        @media (min-width:451px)and (max-width:850px){
+            #container{
+                grid-template-columns: repeat(2,1fr);
+            }
+            img{
+                width: 48.5vw;
+            }
+            #container > div{
+                min-height: 40vh;
+            }
+            button{
+                font-size: 2vw;
+                width: 40vw;
+            }
+            #container > div >div{
+                font-size: 2vw;
+            }
+            p{
+                font-size: 3vw;
+                margin-bottom: 2vh;
+            }
+            .header a{
+                font-size: 2vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div><a href="Men.html">Men</a></div>
+        <div><a href="Women.html">Women</a></div>
+        <div><a href="kids.html">Kids</a></div>
+        <div><a href="cartpage.html">cartpage</a></div>
+        <div><a href="Sign up.html">Sign up</a></div>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    var data=[
+        {
+            img:`https://rukminim2.flixcart.com/image/580/696/ktn9pjk0/kids-sandal/f/i/o/9-sbf1130-sbf-original-imag6ye7z5c6fnvm.jpeg?q=50`,
+            title:`Slip-on Flats For Girls  (Black)`,
+            price:211,
+            id:13,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/880/1056/kcauaa80/kids-shoe/b/y/6/7c-373-grey-slipon-loafers-for-boys-happy-feet-original-imaftggdtqy7brwg.jpeg?q=50`,
+            title:`Slip on Sneakers For Boys & Girls  (Grey)`,
+            price:699,
+            id:14,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/880/1056/kkh6zrk0/shoe/2/6/6/3-f-d-1782-3-freedom-daisy-grey-original-imafztcjdbxpjtkh.jpeg?q=50`,
+            title:`Lace Walking Shoes For Boys & Girls  (White)`,
+            price:299,
+            id:15,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/580/696/kj61gnk0-0/shoe/g/k/9/new-0124-black-37-sppif-black-original-imafysvf2vu4zfyk.jpeg?q=50`,
+            title:`Slip-on Wedges For Girls  (Black)`,
+            price:199,
+            id:16,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/880/1056/kzogn0w0/kids-shoe/h/8/w/6c-led-shoes-hooh-now-comfort-in-fashion-original-imagbms9wygyvb4y.jpeg?q=50`,
+            title:`Velcro Sneakers For Boys & Girls  (Red)`,
+            price:429,
+            id:17,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/880/1056/kvzkosw0/shoe/0/t/u/8-fox-shoetopia-white-original-imag8rpsjf3qrwbt.jpeg?q=50`,
+            title:`Lace Running Shoes For Girls  (White)`,
+            price:499,
+            id:18,
+        }
+    ]
+
+    var box=document.querySelector("#container")
+     data.forEach((ele) => {
+        var div=document.createElement("div")
+        var image=document.createElement("img")
+        image.src=ele.img
+
+        var title=document.createElement("div")
+        title.innerText=ele.title
+
+        var p=document.createElement("p")
+        p.innerText=ele.price
+
+        // var btn=document.createElement("button")
+        var btn=document.createElement("button")
+        btn.innerText=`Add To Cart`
+        btn.onclick=()=>{
+            store(ele)
+        }
+
+
+        div.append(image,title,p,btn)
+        box.append(div)
+
+    })
+
+    var storage
+    if(localStorage.getItem("store")===null){
+       storage=JSON.parse(localStorage.setItem("store",'[]'))
+    }else{
+        storage=JSON.parse(localStorage.getItem("store"))
+    }
+    
+    const store=(ele)=>{
+        storage.push(ele)
+       localStorage.setItem("store",JSON.stringify(storage))
+    }
+
+</script>
+</html>
+
+<!-- F:\Hamleys\navbar\unit4\Sign up.html -->

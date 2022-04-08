@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 20vw;
+            margin: auto;
+            border: 1px solid #cecece;
+            margin-top: 20vh;
+        }
+        input{
+            margin: 1vw;
+            padding: 1vh;
+            border: none;
+            border-bottom: 1px solid #cecece;
+        }
+        #otp, #submit2{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="" onsubmit="payment()">
+       <input type="number" placeholder="Card Number"  name="card">
+       <input type="number" placeholder="CVV" name="cvv">
+       <input type="number" placeholder="Expiry Date " name="expiry">
+       <input type="text" placeholder="Name" name="name">
+       <input type="submit" onsubmit="payment()">
+       <input type="number" placeholder="OTP" id="otp" name="otp">  
+       <input type="submit" onclick="do_it()" id="submit2">                  
+    </form>
+    
+</body>
+<script>
+    const payment=()=>{
+        var form=document.querySelector("form")
+        var Card_num=form["card"].value
+        var cvv=form["cvv"].value
+        var expire=form["expiry"].value
+        var name=form["name"].value
+        event.preventDefault()
+        // console.log(typeof Card_num)
+        if(Card_num === "1234567891234567"  && cvv=="121" && expire==="2026"){
+            document.querySelector("#otp").style.display=`inline`
+            document.querySelector("#submit2").style.display=`inline`
+        }else if(Card_num != "1234567891234567"  || cvv!="121" || expire!="2026" || name.length <=0){
+            alert(`Invalid Credentials`)
+        }
+    }
+
+    const do_it =()=>{
+        // event.preventDefault()
+        var form=document.querySelector("form")
+        let otp=form["otp"].value
+        console.log( otp)
+        if(otp === `12056`){
+            console.log(otp)
+               alert(`Order Successfull`)
+               setTimeout("relod()",1000)
+           }
+    }
+    const relod =()=>{
+        location.reload()
+    }
+</script>
+</html>

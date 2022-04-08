@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-size: 1vw;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: teal;
+            padding: 1vw;
+            font-weight: 900;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 23.8vw;
+            height: 30vh;
+        }
+
+        #container {
+            width: 25vw;
+            /* border: 2px solid red; */
+        }
+
+        #container>div {
+            text-align: center;
+            border: 1px solid #cecece;
+            margin: .5vw;
+        }
+
+        .material-icons {
+            background-color: white;
+            font-size: 3vw;
+            
+        }
+
+        #totalbox {
+            /* border: 1px solid #cecece; */
+            text-align: right;
+            margin-top: 100vh;
+            height: 30vh;
+            width: 35vw;
+        }
+
+        #items {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        table {
+            border: 1px solid #cecece;
+            padding: 1vh;
+            width: 35vw;
+            font-size: 1vw;
+            /* margin: 3vh 3vw 3vh 55vw; */
+            margin-right: 3vw;
+            /* display: none; */
+        }
+
+        td {
+            border: 1px solid #cecece;
+            padding: 2vh;
+        }
+        #total{
+            display: none;
+        }
+        input{
+         margin-left: 2vw;
+            
+        }
+        .proceed{
+           text-align: center;
+           background-color: rgb(255,142,6);
+           color: whitesmoke;
+        }
+        /* .material-icons-outlined {
+            background-color: white;
+            font-size: 3vw;
+            
+        } */
+        #nullone{
+            margin-left: 80vw;
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+           border: 3px solid black;
+        }
+
+        #nullone>span{
+           font-size: 2vw;
+            margin-top: 40vh;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="show()">
+    <div class="header">
+        <div><a href="Men.html">Men</a></div>
+        <div><a href="Women.html">Women</a></div>
+        <div><a href="kids.html">Kids</a></div>
+        <div><a href="cartpage.html">cartpage</a></div>
+        <div><a href="Sign up.html">Sign up</a></div>
+        <div id="cart"></div>
+    </div>
+    <div id="items">
+        <div>
+            <div id="container">
+
+            </div>
+            
+        </div>
+
+        <div id="totalbox">
+            <!-- <span class="material-icons-outlined">inventory </span>   -->
+            <span class="material-icons" onclick="render()">list_alt</span>
+            <div id="total">
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2" class="cart">CART TOTALS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> Subtotal</td>
+                            <td><span>₹</span><span id="amount2">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Shipping</td>
+                            <td>
+                                <div style="margin-bottom: 4vh;"><span> Flat Rate:</span><span
+                                        style="color: green;font-weight: 500;">₹40</span></div>
+                                <div style="margin-bottom: 2vh;">Shipping To Bihar.</div>
+
+                                <div style="text-decoration: underline;font-weight: 800;">CHANGE ADDRESS</div>
+                            </td>
+                        </tr>
+                          <tr >
+                              <td ><input type="text" placeholder="Apply Promo" ></td>
+                              <td><button onclick="discount()" style="padding-left: 1vw;padding-right: 1vw;">Aplly</button></td>
+                          </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td style="color: green;font-weight: 500;"><span>₹</span><span id="amount">0</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="proceed">
+                                <a href="Payment.html"> PROCEED TO CHECKOUT</a>
+                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      
+    </div>
+    <script>
+        var data = JSON.parse(localStorage.getItem("store"))
+        var box = document.querySelector("#container")
+        const show = () => {
+           if(data.length === 0){
+               let box=document.querySelector("#container")
+
+
+            box.innerHTML=`
+            <div id="nullone">
+            <span>Oops Your Nothing to show here</span> <span class="material-icons" style="color:rgb(255,142,6)">shopping_cart</span>
+        </div>`
+            
+              box.append(p,span)
+           }else{
+            data.forEach((ele) => {
+                var div = document.createElement("div")
+                var image = document.createElement("img")
+                image.src = ele.img
+
+                var title = document.createElement("div")
+                title.innerText = ele.title
+
+                var p = document.createElement("p")
+                p.innerText = ele.price
+
+                // var btn=document.createElement("button")
+                var btn = document.createElement("button")
+                btn.innerText = `Remove from Cart`
+                btn.onclick = () => {
+                    rem(ele)
+                }
+
+
+                div.append(image, title, p, btn)
+                box.append(div)
+
+            })
+           }
+
+        }
+        const rem = (ele) => {
+            console.log(ele.id)
+            let arr = JSON.parse(localStorage.getItem("store"))
+            var result = []
+            console.log(arr)
+
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id != ele.id) {
+                    result.push(arr[i])
+                }
+            }
+            console.log(result)
+            // console.log(ans)
+            localStorage.setItem("store", JSON.stringify(result))
+            let box = document.querySelector("#container")
+            box.innerHTML = ''
+            location.reload()
+            show()
+        }
+        document.querySelector("#cart").innerHTML = `${data.length}Items`
+
+        const render = () => {
+            console.log(1)
+            var i=0
+            if(  document.querySelector("#total").style.display===`inline`){
+                document.querySelector("#total").style.display=`none`
+            }else{
+                document.querySelector("#total").style.display=`inline`
+            }
+           
+        }
+        var sum=0;
+        data.forEach((ele)=>{
+            sum+=ele.price
+        })
+
+        console.log(sum)
+        document.querySelector("#amount2").innerHTML=sum
+        document.querySelector("#amount").innerHTML=sum
+
+        const discount=()=>{
+            if(document.querySelector("input").value === `masai30`){
+                document.querySelector("#amount").innerHTML=(sum*7)/10
+                // location.reload()
+            }
+        }
+    </script>
+</body>
+
+</html>

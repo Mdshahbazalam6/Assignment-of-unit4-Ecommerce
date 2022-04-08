@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-size: 1vw;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            background-color: teal;
+            padding: 1vw;
+            font-weight: 900;
+          
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            width: 23.5vw;
+            height: 30vh;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 1vw;
+            text-align: center;
+            margin: 1vw;
+        }
+        #container > div{
+            border: 1px solid #cecece;
+
+        }
+        button{
+            background-color: rgb(255,159,0);
+            padding: .7vw;
+            width: 21vw;margin: auto;
+            text-align: center;
+            border-color:rgb(255,159,0) ;
+        }
+        @media (max-width:450px){
+            #container{
+                grid-template-columns: repeat(1,1fr);
+            }
+            img{
+                width: 95vw;
+            }
+            #container > div{
+                min-height: 40vh;
+            }
+            button{
+                font-size: 2vw;
+                width: 70vw;
+            }
+            #container > div >div{
+                font-size: 3vw;
+            }
+            p{
+                font-size: 3vw;
+                margin-bottom: 2vh;
+            }
+            .header a{
+                font-size: 3vw;
+            }
+        }
+        @media (min-width:451px)and (max-width:850px){
+            #container{
+                grid-template-columns: repeat(2,1fr);
+            }
+            img{
+                width: 48.5vw;
+            }
+            #container > div{
+                min-height: 40vh;
+            }
+            button{
+                font-size: 2vw;
+                width: 40vw;
+            }
+            #container > div >div{
+                font-size: 2vw;
+            }
+            p{
+                font-size: 3vw;
+                margin-bottom: 2vh;
+            }
+            .header a{
+                font-size: 2vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div><a href="Men.html">Men</a></div>
+        <div><a href="Women.html">Women</a></div>
+        <div><a href="kids.html">Kids</a></div>
+        <div><a href="cartpage.html">cartpage</a></div>
+        <div><a href="Sign up.html">Sign up</a></div>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    var data=[
+        {
+            img:`https://rukminim2.flixcart.com/image/416/416/jxdkpzk0/remote-control-toy/9/7/u/kids-plastic-induction-type-2-in-1-flying-indoor-helicopter-with-original-imaf8qsbt2fu8j8f.jpeg?q=70`,
+            title:`GLOBAL Kids Plastic Induction Type 2-in-1 Flying Indoor Helicopter with Remote(Multicolor)  (Multicolor)`,
+            price:575,
+            id:1,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/416/416/kctf0cw0/remote-control-toy/w/g/p/360-degree-rotation-stunt-racing-car-rc-cars-flip-and-roll-stunt-original-imaftu8zehu7n9y7.jpeg?q=70`,
+            title:`Ruhani Stunt Car  (Multicolor)`,
+            price:449,
+            id:2,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/612/612/kc0u7bk0/vehicle-pull-along/r/z/6/parthishy-taders-robot-car-automatic-deformation-2-in-1-original-imaft8zahakernhh.jpeg?q=70`,
+            title:`Toyvala Unique Robot Deform Super Speed Car With 3D Special Light (Yellow)  (Multicolor)`,
+            price:459,
+            id:3,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/416/416/k5wse4w0/remote-control-toy/e/h/w/big-and-mean-rock-crawling-1-20-scale-modified-off-road-hummer-original-imafzhrz88fj4xgy.jpeg?q=70`,
+            title:`Kidz N Toys Big and Mean Rock Crawling 1:20 Scale Modified Off-Road Hummer RC Car/Monster Truck  (Multicolor)`,
+            price:1249,
+            id:4,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/416/416/kwtkxow0/remote-control-toy/p/j/p/wireless-remote-control-fast-modern-car-with-3d-light-car-rc5-3-original-imag9f2yngyftqft.jpeg?q=70`,
+            title:`Just97 Wireless Remote Control Fast Modern Car With 3D Light, CAR_RC5  (White)`,
+            price:259,
+            id:5,
+        },
+        {
+            img:`https://rukminim2.flixcart.com/image/416/416/kjswia80/remote-control-toy/s/n/n/stunt-car-1-at-enterprise-original-imafzakjfegzzzs4.jpeg?q=70`,
+            title:`CADDLE & TOES Rechargeable 360 Degree Twisting Stunt Car with Music & Lights for Kids (Colors as Per Stock) (MULTY COLOUR)  (Multicolor)`,
+            price:649,
+            id:6,
+        }
+    ]
+
+    var box=document.querySelector("#container")
+     data.forEach((ele) => {
+        var div=document.createElement("div")
+        var image=document.createElement("img")
+        image.src=ele.img
+
+        var title=document.createElement("div")
+        title.innerText=ele.title
+
+        var p=document.createElement("p")
+        p.innerText=ele.price
+
+        // var btn=document.createElement("button")
+        var btn=document.createElement("button")
+        btn.innerText=`Add To Cart`
+        btn.onclick=()=>{
+            store(ele)
+        }
+
+
+        div.append(image,title,p,btn)
+        box.append(div)
+
+    })
+    var storage
+    if(localStorage.getItem("store")===null){
+       storage=JSON.parse(localStorage.setItem("store",'[]'))
+    }else{
+        storage=JSON.parse(localStorage.getItem("store"))
+    }
+    
+    const store=(ele)=>{
+        storage.push(ele)
+       localStorage.setItem("store",JSON.stringify(storage))
+    }
+
+</script>
+</html>
